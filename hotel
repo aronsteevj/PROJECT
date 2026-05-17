@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayIndia | Simple & Elegant Hotel Bookings</title>
+    <!-- Google Fonts for premium typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Reset & Variables */
+        :root {
+            --primary: #0f172a; /* Deep elegant slate */
+            --accent: #d97706;  /* Warm Indian gold/amber */
+            --text: #334155;
+            --light-bg: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text);
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .logo span { color: var(--accent); }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active { color: var(--accent); }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.52), rgba(15, 23, 42, 0.6)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Booking Engine Bar */
+        .booking-search-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            width: 85%;
+            max-width: 1100px;
+            margin: -50px auto 50px auto;
+            align-items: end;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .input-group input, .input-group select {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            color: var(--primary);
+        }
+
+        .search-btn {
+            background: var(--accent);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .search-btn:hover { background: #b45309; }
+
+        /* Featured Destinations Section */
+        .container {
+            width: 84%;
+            margin: 0 auto 80px auto;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        .price span { font-size: 12px; font-weight: 400; color: #64748b; }
+
+        .book-link {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Responsive Mobile Layout adjustments */
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav a { margin-left: 15px; font-size: 14px; }
+            .hero h1 { font-size: 30px; }
+            .booking-search-bar { width: 92%; margin-top: -30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Stay<span>India</span></div>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">My Bookings</a>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>Discover Your Perfect Indian Getaway</h1>
+        <p>Explore handpicked hotels, heritage resorts, and cozy homestays.</p>
+    </section>
+
+    <!-- Booking Form Component -->
+    <form class="booking-search-bar" onsubmit="event.preventDefault(); alert('Searching for available properties...');">
+        <div class="input-group">
+            <label for="destination">Where to?</label>
+            <select id="destination" required>
+                <option value="" disabled selected>Select City</option>
+                <option value="goa">Goa</option>
+                <option value="jaipur">Jaipur</option>
+                <option value="kerala">Munnar, Kerala</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="delhi">Delhi NCR</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="checkin">Check-in</label>
+            <input type="date" id="checkin" required>
+        </div>
+        <div class="input-group">
+            <label for="checkout">Check-out</label>
+            <input type="date" id="checkout" required>
+        </div>
+        <div class="input-group">
+            <label for="guests">Guests & Rooms</label>
+            <select id="guests">
+                <option value="1">1 Room, 1 Adult</option>
+                <option value="2" selected>1 Room, 2 Adults</option>
+                <option value="3">2 Rooms, 4 Guests</option>
+            </select>
+        </div>
+        <button type="submit" class="search-btn">Search Stays</button>
+    </form>
+
+    <!-- Featured Destinations Grid -->
+    <main class="container">
+        <h2 class="section-title">Trending Indian Destinations</h2>
+        
+        <div class="destination-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1549294413-26f195afcbce?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h3>The Heritage Palace</h3>
+                    <p>Jaipur, Rajasthan • ★ 4.8</p>
+                    <div class="card-footer">
+                        <div class="price">₹4,500 <span>/ night</span></div>
+                        <a href="#" class="book-link">View Details →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h3>Azure Beach Resort</h3>
+                    <p>Calangute, Goa • ★ 4.5</p>
+                    <div class="card-footer">
+                        <div class="price">₹3,200 <span>/ night</span></div>
+                        <a href="#" class="book-link">View Details →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1602081957921-9137a5d6eaee?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h3>Whispering Pines Villa</h3>
+                    <p>Munnar, Kerala • ★ 4.9</p>
+                    <div class="card-footer">
+                        <div class="price">₹5,800 <span>/ night</span></div>
+                        <a href="#" class="book-link">View Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
